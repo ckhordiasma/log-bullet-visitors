@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/ckhordiasma/log-bullet-visitors/issues"
   },
-  "homepage": "https://github.com/ckhordiasma/log-bullet-visitors#readme"
+  "homepage": "https://github.com/ckhordiasma/log-bullet-visitors#readme",
+  "dependencies": {
+    "aws-sdk": "^2.760.0"
+  }
 }
