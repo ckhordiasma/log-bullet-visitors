@@ -1,0 +1,27 @@
+{
+  "name": "log-bullet-visitors",
+  "version": "1.0.0",
+  "description": "AWS Lambda code for tracking number of visitors to bullet writing sites",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ckhordiasma/log-bullet-visitors.git"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "af-vcd",
+    "bullets",
+    "github",
+    "action"
+  ],
+  "author": "Christopher Kodama",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ckhordiasma/log-bullet-visitors/issues"
+  },
+  "homepage": "https://github.com/ckhordiasma/log-bullet-visitors#readme"
+}
