@@ -1,3 +1,5 @@
+// This file is managed through github at https://github.com/ckhordiasma/log-bullet-visitors/ using github actions.
+
 const AWS = require('aws-sdk');
 
 const dynamo = new AWS.DynamoDB.DocumentClient();
