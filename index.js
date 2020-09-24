@@ -11,7 +11,7 @@ exports.handler = async (event, context) => {
     let statusCode = '200';
     
     const allowedOrigins = ["https://af-vcd.github.io", "https://ea-pods-team.github.io", "https://ckhordiasma.github.io"];
-    
+
     // this logic allows me to have multiple allowed origins
     let allowedOrigin = allowedOrigins[0];
     for(let origin of allowedOrigins){
@@ -27,6 +27,13 @@ exports.handler = async (event, context) => {
         "Access-Control-Allow-Methods":"POST,GET,OPTIONS"
     };
     
+    if(! event.headers.origin){
+        statusCode = '400';
+        body = "Error - No origin specified in request";
+
+        return {statusCode, body, headers};
+    }
+
     const routeSuffix = ' /LogVisitors';
     
     // I routed OPTIONS seperately in the API gateway, so that the routekey shows up as 'OPTIONS /LogVisitors'
