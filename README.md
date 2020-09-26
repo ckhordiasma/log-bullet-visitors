@@ -7,14 +7,11 @@ This is some simple server-side javascript code that I intend to use to track vi
 
 ## Privacy
  
-I am only planning on tracking timestamps of visits and which URL was visited (i.e. ea-pods-team or af-vcd, etc). Not going to track IP addresses of visitors, not even user-agent strings. 
-
-I'm 
- saying "planning" because as of writing this README, I haven't actually implemented this tracker in the source code of any of the bullet writing tools out there. 
+I am only tracking timestamps of visits and which URL was visited (i.e. ea-pods-team or af-vcd, etc). Not going to track IP addresses of visitors, not even user-agent strings. 
  
- If you don't believe what I'm claiming, you can inspect the code and see for yourself. This is the primary reason why I created a github repository to manage this
- lambda function in the first place (as opposed to managing it in AWS console), I wanted to make it very
- transparent what user information I am tracking. 
+ The primary reason why I created a github repository to manage this
+ lambda function in the first place (as opposed to managing it in AWS console) was to make it very
+ transparent what user information I am tracking. If you don't believe what I'm claiming, you can inspect the code and see for yourself.
 
 ## Implementation
 
