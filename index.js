@@ -53,8 +53,8 @@ exports.handler = async (event, context) => {
     
     const countParams = {
         TableName:'Statistics',
-        Select: 'COUNT',
-        FilterExpression: "#date between :start_date and :end_date",
+        Select: "COUNT",
+        KeyConditionExpression: "#date between :start_date and :end_date",
         ExpressionAttributeNames: {
             "#date": "Date",
         },
@@ -67,7 +67,8 @@ exports.handler = async (event, context) => {
     try {
         switch (event.routeKey) {
             case 'GET' + routeSuffix:
-                body = await dynamo.scan(countParams).promise();
+                const result = await dynamo.query(countParams).promise();
+                body = {Count: result.Count }
                 break;
             case 'POST' + routeSuffix:
                 const timestamp = new Date().getTime();
