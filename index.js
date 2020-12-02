@@ -10,10 +10,13 @@ exports.handler = async (event, context) => {
     let body;
     let statusCode = '200';
     
-    const allowedOrigins = ["https://af-vcd.github.io", "https://ea-pods-team.github.io", "https://ckhordiasma.github.io"];
+    const allowedOrigins = ["https://af-vcd.github.io", 
+                            "https://ea-pods-team.github.io", 
+                            "https://ckhordiasma.github.io", 
+                            "http://lightningwithinfive.com"];
 
     // this logic allows me to have multiple allowed origins
-    let allowedOrigin = allowedOrigins[0];
+    let allowedOrigin = '';
     for(let origin of allowedOrigins){
         if(event.headers.origin == origin){
             allowedOrigin = origin;
