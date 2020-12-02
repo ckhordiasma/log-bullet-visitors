@@ -49,9 +49,19 @@ exports.handler = async (event, context) => {
     // Also custom routed GET and POST in the same way as OPTIONS. This has the nice
     //  security feature of only allowing GET, POST, and OPTIONS into my lambda through the API gateway.
     
+    const WEEK_MS = 1000*60*60*24*7;
+    
     const countParams = {
         TableName:'Statistics',
-        Select: 'COUNT'
+        Select: 'COUNT',
+        FilterExpression: "#date between :start_date and :end_date",
+        ExpressionAttributeNames: {
+            "#date": "Date",
+        },
+        ExpressionAttributeValues: {
+             ":start_date": Date.now()-WEEK_MS,
+             ":end_date": Date.now() 
+        }
     };
     
     try {
