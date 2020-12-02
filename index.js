@@ -66,10 +66,12 @@ exports.handler = async (event, context) => {
         }
     };
     
+    let result; 
+    
     try {
         switch (event.routeKey) {
             case 'GET' + routeSuffix:
-                const result = await dynamo.query(countParams).promise();
+                result = await dynamo.query(countParams).promise();
                 body = {Count: result.Count }
                 break;
             case 'POST' + routeSuffix:
@@ -86,7 +88,7 @@ exports.handler = async (event, context) => {
                 }
                 await dynamo.put(params).promise();
                 
-                const result = await dynamo.query(countParams).promise();
+                result = await dynamo.query(countParams).promise();
                 body = {Count: result.Count }
                 break;
             default:
