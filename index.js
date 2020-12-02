@@ -54,13 +54,15 @@ exports.handler = async (event, context) => {
     const countParams = {
         TableName:'Statistics',
         Select: "COUNT",
-        KeyConditionExpression: "#date between :start_date and :end_date",
+        KeyConditionExpression: "begins_with(#id,:idpre) and #date between :start_date and :end_date",
         ExpressionAttributeNames: {
             "#date": "Date",
+            "#id" : "StatsID"
         },
         ExpressionAttributeValues: {
              ":start_date": Date.now()-WEEK_MS,
-             ":end_date": Date.now() 
+             ":end_date": Date.now(),
+             ":idpre": 'VisitLog'
         }
     };
     
@@ -84,7 +86,8 @@ exports.handler = async (event, context) => {
                 }
                 await dynamo.put(params).promise();
                 
-                body = await dynamo.scan(countParams).promise();
+                const result = await dynamo.query(countParams).promise();
+                body = {Count: result.Count }
                 break;
             default:
                 throw new Error(`Unsupported method "${event.routeKey}"`);
