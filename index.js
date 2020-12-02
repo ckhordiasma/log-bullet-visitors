@@ -30,9 +30,14 @@ exports.handler = async (event, context) => {
         "Access-Control-Allow-Methods":"POST,GET,OPTIONS"
     };
     
-    if(! event.headers.origin || ! allowedOrigin){
+    if(! event.headers.origin ){
         statusCode = '400';
         body = "Error - No origin specified in request";
+
+        return {statusCode, body, headers};
+    } else if(! allowedOrigin){
+        statusCode = '400';
+        body = "Error - The origin \"" + event.headers.origin + "\" is not permitted to make a request";
 
         return {statusCode, body, headers};
     }
