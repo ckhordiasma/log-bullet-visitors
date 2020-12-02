@@ -51,10 +51,12 @@ exports.handler = async (event, context) => {
     
     const WEEK_MS = 1000*60*60*24*7;
     
+    const logKey = 'VisitLog';
+    
     const countParams = {
         TableName:'Statistics2',
         Select: "COUNT",
-        KeyConditionExpression: "begins_with(#id,:idpre) and #date between :start_date and :end_date",
+        KeyConditionExpression: "#id = :log and #date between :start_date and :end_date",
         ExpressionAttributeNames: {
             "#date": "Date",
             "#id" : "StatsID"
@@ -62,7 +64,7 @@ exports.handler = async (event, context) => {
         ExpressionAttributeValues: {
              ":start_date": Date.now()-WEEK_MS,
              ":end_date": Date.now(),
-             ":idpre": 'VisitLog'
+             ":log": logKey
         }
     };
     
@@ -81,7 +83,7 @@ exports.handler = async (event, context) => {
                 const params = {
                     TableName : 'Statistics',
                     Item: {
-                        "StatsID": 'VisitLog' + '_' + timestamp + '_' + Math.floor(Math.random()*1024),
+                        "StatsID": logKey,
                         "Date": timestamp,
                         "Site": event.headers.referer
                     }
