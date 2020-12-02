@@ -52,9 +52,9 @@ exports.handler = async (event, context) => {
     const WEEK_MS = 1000*60*60*24*7;
     
     const logKey = 'VisitLog';
-    
+    const table = 'Statistics2';
     const countParams = {
-        TableName:'Statistics2',
+        TableName:table,
         Select: "COUNT",
         KeyConditionExpression: "#id = :log and #date between :start_date and :end_date",
         ExpressionAttributeNames: {
@@ -81,7 +81,7 @@ exports.handler = async (event, context) => {
                 
                 //defining StatsID to be VisitLog_timestamp_RANDOMNUMBER
                 const params = {
-                    TableName : 'Statistics',
+                    TableName : table,
                     Item: {
                         "StatsID": logKey,
                         "Date": timestamp,
