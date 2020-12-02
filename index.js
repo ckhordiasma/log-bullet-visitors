@@ -52,7 +52,7 @@ exports.handler = async (event, context) => {
     const WEEK_MS = 1000*60*60*24*7;
     
     const countParams = {
-        TableName:'Statistics',
+        TableName:'Statistics2',
         Select: "COUNT",
         KeyConditionExpression: "begins_with(#id,:idpre) and #date between :start_date and :end_date",
         ExpressionAttributeNames: {
